@@ -1,6 +1,8 @@
+package example1;
+
 public class Cat {
 
-    public void eat(CatFood catFood) {
+     void eat(CatFood catFood) {
         System.out.println("кот ест: "+catFood.name);
     }
 }
