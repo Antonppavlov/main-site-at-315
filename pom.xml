@@ -23,7 +23,7 @@
                 <configuration>
                     <archive>
                         <manifest>
-                            <mainClass>ru.geekbrains.main.site.Start</mainClass>
+                            <mainClass>ru.geekbrains.main.site.at.Start</mainClass>
                         </manifest>
                     </archive>
                 </configuration>

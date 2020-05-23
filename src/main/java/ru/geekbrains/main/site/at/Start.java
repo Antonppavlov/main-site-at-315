@@ -1,11 +1,11 @@
-package ru.geekbrains.main.site;
+package ru.geekbrains.main.site.at;
 
-import ru.geekbrains.main.site.participants.Runner;
-import ru.geekbrains.main.site.obstacles.Obstacles;
-import ru.geekbrains.main.site.obstacles.Treadmill;
-import ru.geekbrains.main.site.obstacles.Wall;
-import ru.geekbrains.main.site.participants.Cat;
-import ru.geekbrains.main.site.participants.Human;
+import ru.geekbrains.main.site.at.participants.Runner;
+import ru.geekbrains.main.site.at.obstacles.Obstacles;
+import ru.geekbrains.main.site.at.obstacles.Treadmill;
+import ru.geekbrains.main.site.at.obstacles.Wall;
+import ru.geekbrains.main.site.at.participants.Cat;
+import ru.geekbrains.main.site.at.participants.Human;
 
 public class Start {
     public static void main(String[] args) {

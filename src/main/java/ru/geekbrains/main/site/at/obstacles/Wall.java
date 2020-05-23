@@ -1,6 +1,6 @@
-package ru.geekbrains.main.site.obstacles;
+package ru.geekbrains.main.site.at.obstacles;
 
-import ru.geekbrains.main.site.participants.Runner;
+import ru.geekbrains.main.site.at.participants.Runner;
 
 public class Wall implements Obstacles {
     private int width;

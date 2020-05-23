@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.participants;
+package ru.geekbrains.main.site.at.participants;
 
 public interface Runner {
 

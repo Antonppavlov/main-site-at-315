@@ -1,13 +1,12 @@
-package ru.geekbrains.main.site.participants;
+package ru.geekbrains.main.site.at.participants;
 
-public class Cat implements Runner {
-
+public class Human implements Runner {
     private String name;
     private int maxLength;
     private int maxWeight;
     private boolean success =true;
 
-    public Cat(String name,int maxLength, int maxWeight) {
+    public Human(String name, int maxLength, int maxWeight) {
         this.name = name;
         this.maxLength = maxLength;
         this.maxWeight = maxWeight;
@@ -36,9 +35,7 @@ public class Cat implements Runner {
     public boolean getSuccess() {
         return success;
     }
-
     public void setSuccess(boolean success) {
         this.success = success;
     }
-
 }
