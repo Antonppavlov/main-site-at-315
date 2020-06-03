@@ -13,6 +13,9 @@ public class AssertThrowsTest {
     void example()  {
         File file = new File("src/test/resources/txt1.txt");
 
+
+
+
         Assertions.assertThrows(FileNotFoundException.class,
                 () -> new Scanner(file));
     }

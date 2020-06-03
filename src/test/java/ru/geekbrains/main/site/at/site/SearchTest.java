@@ -1,11 +1,16 @@
 package ru.geekbrains.main.site.at.site;
 
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import ru.geekbrains.main.site.at.site.base.BaseTest;
 
+@Feature("Поиск")
+@Story("Проверка отображения блоков")
 public class SearchTest extends BaseTest {
 //    Перейти на сайт https://geekbrains.ru/courses
 //    Нажать на кнопку Поиск
@@ -19,6 +24,7 @@ public class SearchTest extends BaseTest {
 //            Тесты
 //    Проекты и компании
 
+    @DisplayName("Проверка количества контента")
     @Test
     void events() {
         WebElement buttonSearch = driver.findElement(By.cssSelector("[class=\"show-search-form\"] [class=\"svg-icon icon-search \"]"));

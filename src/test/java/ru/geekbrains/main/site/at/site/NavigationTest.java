@@ -1,5 +1,8 @@
 package ru.geekbrains.main.site.at.site;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Feature;
+import io.qameta.allure.Story;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.MethodSource;
@@ -8,45 +11,45 @@ import ru.geekbrains.main.site.at.site.base.BaseTest;
 
 import java.util.stream.Stream;
 
+@Feature("Здесь Название тестируемого функционала")
+@Story("Здесь Название Тестового-набора")
 @DisplayName("Проверка Навигации")
 public class NavigationTest extends BaseTest {
 
-    static Stream<String> stringProvider() {
+    public static Stream<String> stringProviderNotPopUp() {
         return Stream.of(
                 "Вебинары",
                 "Форум",
-                "Блог",
                 "Тесты",
-                "Карьера",
+                "Карьера"
+        );
+    }
+
+    public static Stream<String> stringProviderPopUp() {
+        return Stream.of(
+                "Блог",
                 "Курсы"
         );
     }
 
+    @Description("Тесты которые проверяют функционал без Pop-UP")
     @DisplayName("Нажатие на элемент навагации")
     @ParameterizedTest(name = "{index} => Нажатие на: {0}")
-    @MethodSource("stringProvider")
-    void checkNavigation(String name) {
+    @MethodSource("stringProviderNotPopUp")
+    public void checkNavigationNotPopUp(String name) {
         new HomePage(driver)
                 .getNavigation().clickButton(name)
                 .checkNamePage(name);
     }
 
-
-
-    //    Перейти на сайт https://geekbrains.ru/courses
-//    Нажать на кнопку Курсы
-//    Проверить что страница Курсы открылась
-//    Повторить для
-//    Курсы
-//    Вебинары
-//    Форум
-//    Блог
-//    Тесты
-//    Карьера
-
-    //Много кода
-    //Сложно оптимизировать при изменениях
-    //Повторяет одни и теже действия
-    //тестовые данные в проперти файле
-    //6 проверок в одном тесте
+    @Description("Тесты которые проверяют функционал Pop-UP")
+    @DisplayName("Нажатие на элемент навагации")
+    @ParameterizedTest(name = "{index} => Нажатие на: {0}")
+    @MethodSource("stringProviderPopUp")
+    public void checkNavigationPopUp(String name) {
+        new HomePage(driver)
+                .getNavigation().clickButton(name)
+                .closedPopUp()
+                .checkNamePage(name);
+    }
 }

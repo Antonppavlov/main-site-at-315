@@ -13,24 +13,37 @@ public class HomePage {
     @FindBy(css = "h2[class=\"gb-header__title\"]")
     private WebElement textNamePage;
 
+//    @FindBy(xpath = "//div[@data-testid=\"promocode-banner-container\"]//..//button[2]")
+//    private WebElement popUpButtonClosed;
+
+    @FindBy(css = "div button svg[class='svg-icon icon-popup-close-button ']")
+    private WebElement buttonPopUpClosed;
+
     private Navigation navigation;
 
     private WebDriver driver;
 
+    private WebDriverWait wait10second;
+
 
     public HomePage(WebDriver driver) {
         this.driver = driver;
-        navigation = new Navigation(driver);
+        this.navigation = new Navigation(driver);
+        this.wait10second = new WebDriverWait(driver, 10);
         PageFactory.initElements(driver, this);
     }
 
     public HomePage checkNamePage(String expectedNamePage) {
-        new WebDriverWait(driver, 10)
-                .until(ExpectedConditions.textToBePresentInElement(textNamePage, expectedNamePage));
+        wait10second.until(ExpectedConditions.textToBePresentInElement(textNamePage, expectedNamePage));
         return this;
     }
 
     public Navigation getNavigation() {
         return navigation;
+    }
+
+    public HomePage closedPopUp() {
+        this.buttonPopUpClosed.click();
+        return this;
     }
 }
