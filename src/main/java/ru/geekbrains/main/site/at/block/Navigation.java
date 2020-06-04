@@ -5,6 +5,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import ru.geekbrains.main.site.at.ButtonNotFoundException;
 import ru.geekbrains.main.site.at.page.HomePage;
 
 public class Navigation {
@@ -61,7 +62,7 @@ public class Navigation {
                 break;
             }
             default: {
-                throw new RuntimeException("Кнопка не найдена! Нет кнопки с именем: " + name);
+                throw new ButtonNotFoundException("Кнопка не найдена! Нет кнопки с именем: " + name);
             }
         }
         return new HomePage(driver);
