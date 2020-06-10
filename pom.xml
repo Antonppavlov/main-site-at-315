@@ -8,7 +8,6 @@
     <artifactId>main-site-at</artifactId>
     <version>1.0-SNAPSHOT</version>
 
-
     <properties>
         <maven.compiler.target>1.8</maven.compiler.target>
         <maven.compiler.source>1.8</maven.compiler.source>
@@ -56,7 +55,7 @@
             <artifactId>webdrivermanager</artifactId>
             <version>${webdrivermanager.version}</version>
         </dependency>
-        <!--TODO связка с аллюре?-->
+
         <dependency>
             <groupId>org.junit.platform</groupId>
             <artifactId>junit-platform-console-standalone</artifactId>
@@ -81,7 +80,7 @@
                     <!--true - Статус билда не зависит от прохождения тестов-->
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*Test*.java</include>
+                        <include>**/*WebTest*.java</include>
                     </includes>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
