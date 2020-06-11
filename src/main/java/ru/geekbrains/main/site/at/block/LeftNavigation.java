@@ -5,12 +5,16 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.main.site.at.BasePage;
-import ru.geekbrains.main.site.at.ButtonNotFoundException;
+import ru.geekbrains.main.site.at.page.BasePageObject;
 import ru.geekbrains.main.site.at.page.content.CoursePage;
 import ru.geekbrains.main.site.at.page.content.HomePage;
+import ru.geekbrains.main.site.at.page.content.TestPage;
+import ru.geekbrains.main.site.at.page.content.base.ContentBasePage;
 
-public class LeftNavigation extends BasePage {
+public class LeftNavigation extends BasePageObject {
+
+    @FindBy(css = "[class='svg-icon icon-logo']")
+    private WebElement icon;
 
     @FindBy(css = "[id='nav'] [href='/courses']")
     private WebElement buttonCourses;
@@ -35,44 +39,53 @@ public class LeftNavigation extends BasePage {
         PageFactory.initElements(driver, this);
     }
 
-    @Step("нажатие кнопки '{name}'")
-    public BasePage clickButton(ButtonName name) {
-        switch (name) {
-            case COURSES: {
+
+    @Step("Нажатие кнопки {nameButton}")
+    public ContentBasePage clickButton(Button button) {
+        ContentBasePage contentBasePage = null;
+
+        switch (button) {
+            case ICON:
+                icon.click();
+                contentBasePage = new HomePage(driver);
+                break;
+            case COURSES:
                 buttonCourses.click();
-                return new CoursePage(driver);
-            }
-            case EVENTS: {
+                contentBasePage = new CoursePage(driver);
+                break;
+            case EVENTS:
+                //TODO доработать под другие кнопки
                 buttonEvents.click();
-                //TODO нужно реализовать страницу
-                return new HomePage(driver);
-            }
-            case TOPICS: {
+                break;
+            case TOPICS:
+                //TODO доработать под другие кнопки
                 buttonTopics.click();
-                //TODO нужно реализовать страницу
-                return new HomePage(driver);
-            }
-            case POSTS: {
+                break;
+            case POSTS:
+                //TODO доработать под другие кнопки
                 buttonPosts.click();
-                //TODO нужно реализовать страницу
-                return new HomePage(driver);
-            }
-            case TESTS: {
+                break;
+            case TESTS:
                 buttonTests.click();
-                //TODO нужно реализовать страницу
-                return new HomePage(driver);
-            }
-            case CAREER: {
+                contentBasePage = new TestPage(driver);
+                break;
+            case CAREER:
+                //TODO доработать под другие кнопки
                 buttonCareer.click();
-                //TODO нужно реализовать страницу
-                return new HomePage(driver);
-            }
+                break;
         }
 
-        throw new ButtonNotFoundException();
+        if(null==contentBasePage){
+            //TODO доработать под другие кнопки
+            contentBasePage = new HomePage(driver);
+//            throw new ButtonNotFoundException("Страница: "+button.getText()+" не описана!");
+        }
+
+        return contentBasePage;
     }
 
-    public enum ButtonName {
+    public enum Button {
+        ICON("Главная"),
         COURSES("Курсы"),
         EVENTS("Вебинары"),
         TOPICS("Форум"),
@@ -82,7 +95,7 @@ public class LeftNavigation extends BasePage {
 
         private String text;
 
-        ButtonName(String text) {
+        Button(String text) {
             this.text = text;
         }
 

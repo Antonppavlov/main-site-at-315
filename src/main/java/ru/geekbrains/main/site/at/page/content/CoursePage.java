@@ -4,57 +4,51 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
-import ru.geekbrains.main.site.at.BasePage;
-import ru.geekbrains.main.site.at.block.CourseNavigation;
-import ru.geekbrains.main.site.at.block.Header;
-import ru.geekbrains.main.site.at.block.LeftNavigation;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import ru.geekbrains.main.site.at.block.ContentNavigationCourseBlock;
+import ru.geekbrains.main.site.at.page.content.base.ContentBasePage;
 
 import java.util.List;
 
-public class CoursePage extends BasePage {
+public class CoursePage extends ContentBasePage {
 
-    @FindBy(css = "[class=\"list-group\"] label")
+    private ContentNavigationCourseBlock contentNavigationCourseBlock;
+
+    @FindBy(xpath = "//form/ul//label")
     private List<WebElement> filterList;
 
-    private LeftNavigation leftNavigation;
-    private CourseNavigation courseNavigation;
-    private Header header;
+    @FindBy(xpath = "//a/div/div/span")
+    private List<WebElement> courseList;
 
     public CoursePage(WebDriver driver) {
         super(driver);
-        this.driver = driver;
-        this.leftNavigation = new LeftNavigation(driver);
-        this.courseNavigation = new CourseNavigation(driver);
-        this.header = new Header(driver);
+        this.contentNavigationCourseBlock = new ContentNavigationCourseBlock(driver);
         PageFactory.initElements(driver, this);
     }
 
-    public LeftNavigation getLeftNavigation() {
-        return leftNavigation;
-    }
-
-    public Header getHeader() {
-        return header;
-    }
-
-    public CourseNavigation getCourseNavigation() {
-        return courseNavigation;
-    }
-
-    @Override
-    public CoursePage closedPopUp() {
-        super.closedPopUp();
+    public CoursePage configFilter(String... args) {
+        for (String test : args) {
+            WebElement element = findElement(filterList, test);
+            element.click();
+        }
         return this;
     }
 
-    public CoursePage clickFilter(String... filer) {
-        for (String text : filer) {
-            for (WebElement element : filterList) {
-                if (element.getText().equals(text)) {
-                    element.click();
-                }
-            }
+    public CoursePage checkingDisplayedCourses(String... args) {
+        for (String test : args) {
+            WebElement element = findElement(courseList, test);
+            wait10second.until(ExpectedConditions.visibilityOf(element));
         }
+        return this;
+    }
+
+    public ContentNavigationCourseBlock getContentNavigationCourseBlock() {
+        return contentNavigationCourseBlock;
+    }
+
+    @Override
+    public CoursePage openUrl() {
+        driver.get("https://geekbrains.ru/courses");
         return this;
     }
 }
