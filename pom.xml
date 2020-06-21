@@ -80,7 +80,7 @@
                     <!--true - Статус билда не зависит от прохождения тестов-->
                     <testFailureIgnore>true</testFailureIgnore>
                     <includes>
-                        <include>**/*WebTest*.java</include>
+                        <include>**/*Test*.java</include>
                     </includes>
                     <argLine>
                         -javaagent:"${settings.localRepository}/org/aspectj/aspectjweaver/${aspectj.version}/aspectjweaver-${aspectj.version}.jar"
