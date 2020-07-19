@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.junit.example.hamcrest;
+package ru.geekbrains.example.hamcrest;
 
 import org.junit.jupiter.api.Test;
 
@@ -7,6 +7,7 @@ import static org.hamcrest.Matchers.equalToCompressingWhiteSpace;
 import static org.hamcrest.Matchers.equalToIgnoringCase;
 
 public class StringHamcrestTest {
+
     //    Допустим, есть строка. Надо проверить, что она равна «petya», независимо от регистра (большие или маленькие буквы):
     @Test
     public void given2Strings_whenEqual_thenCorrect() {

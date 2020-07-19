@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.junit.example.annotaions;
+package ru.geekbrains.example.junit.annotaions;
 
 import org.junit.jupiter.api.RepeatedTest;
 

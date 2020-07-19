@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.junit.example.annotaions.before.and.after;
+package ru.geekbrains.example.junit.annotaions.before.and.after;
 
 import org.junit.jupiter.api.*;
 

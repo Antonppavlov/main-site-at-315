@@ -1,4 +1,4 @@
-package ru.geekbrains.main.site.at.junit.example.hamcrest.object;
+package ru.geekbrains.example.hamcrest.object;
 
 import org.junit.jupiter.api.Test;
 
